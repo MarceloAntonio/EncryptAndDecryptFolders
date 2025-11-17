@@ -13,8 +13,11 @@ def main():
   parser.add_argument('--encrypt','-e',action='store_true', help='Encrypt')
 
   arg = parser.parse_args()
+  if arg.encrypt and arg.decrypt:
+    print("Só pode escolher um")
+    return
 
-  if arg.encrypt:
+  elif arg.encrypt:
     Encrypt(arg.folderPath)
 
   elif arg.decrypt:
