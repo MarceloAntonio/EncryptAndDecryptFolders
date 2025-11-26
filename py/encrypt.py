@@ -1,7 +1,19 @@
 import os
 from cryptography.fernet import Fernet
 from .clean import Clean
+from sys import exit
 
+
+warningTrigger = True
+
+def Warning(path):
+    # Asks the user for confirmation to be sure they want to encrypt the following directory
+    confirm = input(f"\nAre you sure you want to encrypt the following path?\n\n {path}\n\n yes[Y] - no[N]\nOption: ")
+    
+    
+    if confirm not in ("y", "Y"):
+        print("\nAborting encryption")
+        exit()
 
 def EncryptFile(file_path, fernet):
     try:
@@ -51,13 +63,8 @@ def Encrypt(path,keyPath):
         print("Key was not found")
         return
 
-    # Asks the user for confirmation to be sure they want to encrypt the following directory
-    confirm = input(f"\nAre you sure you want to encrypt the following path?\n\n {path}\n\n yes[Y] - no[N]\nOption: ")
-    
-    
-    if confirm not in ("y", "Y"):
-        print("\nAborting encryption")
-        return
+    if warningTrigger == True:
+        Warning(path)
     
 
     with open(keyPath, 'rb') as file_key:

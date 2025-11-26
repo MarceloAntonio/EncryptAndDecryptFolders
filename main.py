@@ -1,7 +1,9 @@
 import argparse
 from py.decrypt import Decrypt
+import py.encrypt
 from py.encrypt import Encrypt
 from py.GenKey import GenKey
+
 
 def main():
   parser = argparse.ArgumentParser(
@@ -14,13 +16,16 @@ def main():
   parser.add_argument('--decrypt','-d',action='store_true', help='Decrypt')
   parser.add_argument('--encrypt','-e',action='store_true', help='Encrypt')
   parser.add_argument('--genkey','-g',action='store_true', help='Generate key')
+  parser.add_argument('--skip','-s',action='store_true', help='Skip the warning')
   
 
   arg = parser.parse_args()
   
   selected = sum([arg.encrypt,arg.decrypt,arg.genkey,])
-  
-  
+
+  if arg.skip:
+    py.encrypt.warningTrigger = False
+
   if selected > 1:
     print("Só pode escolher um")
     return
