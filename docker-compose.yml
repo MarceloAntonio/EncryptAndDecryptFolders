@@ -1,6 +1,6 @@
 services:
  app:
   build: .
-  container_name: EncryptAndDecryptFolders
+  container_name: lethe
   command: bash
   tty: true

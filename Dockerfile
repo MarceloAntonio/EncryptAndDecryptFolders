@@ -1,8 +1,7 @@
 FROM python:latest
 
-COPY . /EncryptAndDecryptFolders 
+COPY . /lethe
 
-WORKDIR /EncryptAndDecryptFolders 
+WORKDIR /lethe 
 
 RUN pip install --no-cache-dir -r requirements.txt
-
